@@ -15,17 +15,16 @@ require_once 'pathToVendor/autoload.php';
 
 use PageTemplateManager\Templater;
 
-// Object use
 $templateDir = 'pathToYourPageTemplatesFolder';
 
+// Object use
 $templater = new Templater($templateDir);
 
 $templater->loadHeaderTemplate('content');
 $templater->loadFooterTemplate('content');
 
-// Singleton use
-$templateDir = 'pathToYourPageTemplatesFolder';
 
+// Singleton use
 Templater::enableSingletonPattern($templateDir);
 
 Templater::loadHeaderTemplate('content');
@@ -112,3 +111,8 @@ Templater::loadFooterTemplate();
 - [ ] Submit a package to packagist
 - [ ] Create a docs page on githubpages
 - [ ] Add translation for Russian Language
+- [ ] Add Real-use examples
+
+## Real Use Example
+
+// @TODO add real use examples
