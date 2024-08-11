@@ -1,6 +1,6 @@
 {
     "name": "dlsamson/page-template-manager",
-    "description": "It is a convenient package for Bitrix CMS that allows developers to easily create and manage page templates inside a single website template. With this tool, you can quickly develop reusable templates that can be used for various pages of your web application.",
+    "description": "A package for simplifying the creation and management of page templates within a single Bitrix CMS template",
     "type": "library",
     "license": "MIT",
     "version": "1.0.0",
@@ -20,11 +20,10 @@
         "illuminate/support": "*"
     },
     "require-dev": {
-        "larapack/dd": "*"
+        "larapack/dd": "*",
+        "phpunit/phpunit": "^9.6"
     },
-    "config": {
-        "platform": {
-            "php": ">=7.4"
-        }
-    }    
+    "scripts": {
+        "tests": "./vendor/bin/phpunit tests"
+    }
 }

@@ -17,21 +17,15 @@ class Templater
      * @param mixed $varsToPass     variables to pass into template
      * @throws \InvalidArgumentException    config
      */
-    public function __construct(string $templateDir, $config, $varsToPass = []) {
-        $this->templateDir = $templateDir;
-
-        if (is_string($config))
-            $this->config = require $config;
-        else if (is_array($config))
-            $this->config = $config;
-        else
-            throw new \InvalidArgumentException(sprintf('$config parameter must be type of array or string. Found: %s', gettype($config)));
+    public function __construct(string $templateDir, $varsToPass = []) {
+        $this->templateDir = str_ends_with($templateDir, '/')
+            ? substr($templateDir, 0, -1)
+            : $templateDir;
 
         $this->varsToPass = $varsToPass;
     }
 
     protected string $templateDir;
-    protected array $config;
     protected array $varsToPass = [];
 
     public function __call($name, $arguments) {
@@ -41,10 +35,10 @@ class Templater
             throw new BadMethodCallException(sprintf('Method does not exsits or does not match pattern \'load{Type}Template\', found: %s', $name));
 
         if (count($arguments) > 1)
-            throw new BadMethodCallException(sprintf('Expected exactly 1 arguments, got %s', count($arguments)));
+            throw new BadMethodCallException(sprintf('Expected exactly 0 or 1 arguments, got %s', count($arguments)));
 
-        $name = $arguments[0];
-        $type = Str::lower($matches['type']);
+        $name = $arguments[0] ?? '';
+        $type = Str::camel($matches['type']);
 
         $this->loadTemplate($name, $type);
     }
