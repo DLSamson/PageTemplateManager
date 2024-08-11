@@ -108,6 +108,7 @@ Templater::loadFooterTemplate();
 
 ## TODO
 
-- [_] Implement Manager class to make it understand which template should load, depending on a page url;
-- [_] Submit a package to packagist
-- [_] Create a docs page on githubpages
+- [ ] Implement Manager class to make it understand which template should load, depending on a page url;
+- [ ] Submit a package to packagist
+- [ ] Create a docs page on githubpages
+- [ ] Add translation for Russian Language
