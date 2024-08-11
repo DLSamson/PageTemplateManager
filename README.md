@@ -67,7 +67,7 @@ Templater::loadFooterTemplate('services.list');
 
 ### Your Own Template Types
 
-Until you follow `load{Type}Template` patter when calling a method, you can name your type however you want.
+While you follow `load{Type}Template` patter when calling a method, you can name your type however you want.
 
 ```php
 Templater::loadSubFooterTemplate('list');
@@ -108,7 +108,7 @@ Templater::loadFooterTemplate();
 
 ## TODO
 
-- [ ] Implement Manager class to make it understand which template should load, depending on a page url;
+- [ ] Implement Manager class to make it understand which template should load, depending on a page url
 - [ ] Submit a package to packagist
 - [ ] Create a docs page on githubpages
 - [ ] Add translation for Russian Language
