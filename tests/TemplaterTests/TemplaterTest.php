@@ -90,4 +90,17 @@ final class TemplaterTest extends TestCase {
 
         Templater::loadWhateverWithoutSingletonTemplate();
     }
+
+    public function testCanPassValueToTemplate() : void {
+        $templatesDirectory = __DIR__ . '/templates';
+
+        $templater = new Templater($templatesDirectory);
+
+        ob_start();
+        $templater->loadPassValueTemplate(null, [
+            'name' => 'John'
+        ]);
+        $content = ob_get_clean();
+        $this->assertEquals('Hello John', $content);
+    }
 }
