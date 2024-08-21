@@ -18,7 +18,7 @@ class Templater
      * @throws \InvalidArgumentException    config
      */
     public function __construct(string $templateDir, array $globalVariablesToPass = []) {
-        $this->templateDir = str_ends_with($templateDir, '/')
+        $this->templateDir = str_ends_with($templateDir, '/') // If possible, we use polyfill
             ? substr($templateDir, 0, -1)
             : $templateDir;
 
@@ -57,7 +57,7 @@ class Templater
             : sprintf('%s%s.php', $this->parseName($name), $type);
 
         if (!file_exists($pathToTemplateFile))
-            throw new TemplateFileNotFoundException(sprintf('Template file with name %s and type %s not found at %s', $name ?: '_', $type, $pathToTemplateFile));
+            throw new TemplateFileNotFoundException(sprintf('Template file with name %s and type %s not found at %s', $name ?: '*empty*', $type, $pathToTemplateFile));
 
         $this->includeTemplateFile($pathToTemplateFile, $values);
     }

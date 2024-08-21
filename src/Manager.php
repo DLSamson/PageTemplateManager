@@ -37,8 +37,6 @@ class Manager
     protected Templater $templater;
     protected array $config;
 
-    protected bool $isSilentMode = false;
-
     public function __call($name, $arguments) {
         $regex = '/autoDetect(?<type>.*?)Template/';
 
@@ -58,23 +56,13 @@ class Manager
         $this->loadAutoDetectedTemplate($type, $name, $values);
     }
 
-    public function setExceptionSilentMode(bool $value) {
-        $this->isSilentMode = $value;
-    }
-    public function getExceptionSilentMode() {
-        return $this->isSilentMode;
-    }
-
     protected function loadAutoDetectedTemplate(string $type, ?string $name, array $values = []) {
-        try {
-            call_user_func([$this->templater, sprintf('load%sTemplate', $type)], $name, $values);
-        }
-        catch(TemplateFileNotFoundException $exception) {
-            if ($this->isSilentMode)
-                return;
-            else
-                throw $exception;
-        }
+        // dump([
+        //     'calledMethod' => sprintf('load%sTemplate', $type), 
+        //     'name' => $name,
+        //     'values' => $values
+        // ]);
+        call_user_func([$this->templater, sprintf('load%sTemplate', $type)], $name, $values);
     }
 
     protected function resolveTemplateName($type) : ?string {
